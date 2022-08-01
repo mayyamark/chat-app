@@ -1,12 +1,13 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, SafeAreaView } from "react-native";
+import PersonalInfo from "./components/PersonalInfo";
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>podkarah go!</Text>
+    <SafeAreaView style={styles.container}>
+      <PersonalInfo />
       <StatusBar style="auto" />
-    </View>
+    </SafeAreaView>
   );
 }
 
