@@ -7,7 +7,7 @@ const PersonalInfo = () => {
       <Image source={require("../assets/wired-brain-coffee-logo.png")} />
 
       <View>
-        <Text>Please enter your name</Text>
+        <Text>Please enter your name..</Text>
         <TextInput />
       </View>
 
