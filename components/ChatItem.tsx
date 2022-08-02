@@ -6,7 +6,7 @@ export interface IChatItem {
   id: number;
   text: string;
   image: string;
-  timestamp: number;
+  timeStamp: number;
   by: string;
 }
 
@@ -32,8 +32,6 @@ const ChatItem: React.FC<IChatItemProps> = ({ chatItem, username }) => {
 
   const avatarImage = useMemo(() => chatItem.image || unknownImage, [chatItem]);
 
-  console.log(animatedValue);
-
   return (
     <Animated.View
       style={[
@@ -51,7 +49,7 @@ const ChatItem: React.FC<IChatItemProps> = ({ chatItem, username }) => {
           }}
         />
         <Text style={Styles.smallItalicText}>
-          {chatItem.by} at {new Date(chatItem.timestamp).toLocaleTimeString()}
+          {chatItem.by} at {new Date(chatItem.timeStamp).toLocaleTimeString()}
         </Text>
       </View>
       <Text style={Styles.chatText}>{chatItem.text}</Text>
