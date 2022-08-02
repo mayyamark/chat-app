@@ -1,15 +1,51 @@
-import React from "react";
-import { View, Text } from "react-native";
+import React, { useState } from "react";
+import { View, TextInput, Button, FlatList } from "react-native";
+import ChatItem, { IChatItem } from "./ChatItem";
+import Styles from "./Styles";
 
-type ChatProps = {
+interface IChatProps {
   username: string;
   image: string;
-};
+}
 
-const Chat: React.FC<ChatProps> = ({ username, image }) => {
+const Chat: React.FC<IChatProps> = ({ username, image }) => {
+  const [chatInput, setChatInput] = useState("");
+  const [chatItems, setChatItems] = useState<IChatItem[]>([]);
+
   return (
-    <View style={{ marginTop: 200, alignSelf: "center" }}>
-      <Text>Hi, {username}! You can chat here shortly!</Text>
+    <View style={Styles.container}>
+      <FlatList
+        inverted
+        data={[...chatItems].sort((a, b) => b.timestamp - a.timestamp)}
+        keyExtractor={(item) => item.id.toLocaleString()}
+        renderItem={({ item }) => (
+          <ChatItem username={username} chatItem={item} />
+        )}
+      />
+
+      <View style={Styles.sendSection}>
+        <TextInput
+          style={Styles.chatTextInput}
+          value={chatInput}
+          onChangeText={(text) => setChatInput(text)}
+        />
+        <Button
+          title="Send"
+          onPress={() => {
+            setChatItems([
+              ...chatItems,
+              {
+                id: chatItems.length + 1,
+                text: chatInput,
+                image,
+                timestamp: Date.now(),
+                by: username,
+              },
+            ]);
+            setChatInput("");
+          }}
+        />
+      </View>
     </View>
   );
 };

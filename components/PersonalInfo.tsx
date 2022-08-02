@@ -3,11 +3,11 @@ import React, { useState } from "react";
 import Styles from "./Styles";
 import ImageChooser from "./ImageChooser";
 
-type PersonalInfoProps = {
+interface IPersonalInfoProps {
   onPress: (name: string, image: string) => void;
-};
+}
 
-const PersonalInfo: React.FC<PersonalInfoProps> = ({ onPress }) => {
+const PersonalInfo: React.FC<IPersonalInfoProps> = ({ onPress }) => {
   const [name, setName] = useState("");
   const [image, setImage] = useState("");
 

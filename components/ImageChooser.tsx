@@ -4,11 +4,11 @@ import * as ImagePicker from "expo-image-picker";
 import * as ImageManipulator from "expo-image-manipulator";
 import Styles from "./Styles";
 
-type ImageChooserProps = {
+interface IImageChooserProps {
   onChangeImage?: (image: string) => void;
-};
+}
 
-const ImageChooser: React.FC<ImageChooserProps> = ({ onChangeImage }) => {
+const ImageChooser: React.FC<IImageChooserProps> = ({ onChangeImage }) => {
   const [image, setImage] = useState("");
 
   useEffect(() => {
