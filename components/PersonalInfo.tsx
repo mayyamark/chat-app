@@ -3,7 +3,11 @@ import React, { useState } from "react";
 import Styles from "./Styles";
 import ImageChooser from "./ImageChooser";
 
-const PersonalInfo = () => {
+type PersonalInfoProps = {
+  onPress: (name: string, image: string) => void;
+};
+
+const PersonalInfo: React.FC<PersonalInfoProps> = ({ onPress }) => {
   const [name, setName] = useState("");
   const [image, setImage] = useState("");
 
@@ -25,7 +29,7 @@ const PersonalInfo = () => {
 
       <ImageChooser onChangeImage={(image) => setImage(image)} />
 
-      <Button title="Start chatting!" onPress={() => {}} />
+      <Button title="Start chatting!" onPress={() => onPress(name, image)} />
     </View>
   );
 };
